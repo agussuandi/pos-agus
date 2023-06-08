@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cashier extends Model
 {
@@ -15,4 +16,12 @@ class Cashier extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    /**
+     * Scope a query to only find by code.
+     */
+    public function scopeCode(Builder $query, $code): void
+    {
+        $query->where('code', $code);
+    }
 }

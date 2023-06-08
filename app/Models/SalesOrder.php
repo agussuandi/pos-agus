@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class SalesOrder extends Model
 {
     use HasFactory;
 
@@ -18,10 +18,10 @@ class Product extends Model
     protected $guarded = ['id'];
 
     /**
-     * Scope a query to only find by code.
+     * Get the products for the sales order.
      */
-    public function scopeCode(Builder $query, $code): void
+    public function salesOrderProducts(): HasMany
     {
-        $query->where('code', $code);
+        return $this->hasMany(SalesOrderProduct::class, 'sales_order_id', 'id');
     }
 }
