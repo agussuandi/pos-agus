@@ -14,13 +14,15 @@ return new class extends Migration
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->id();
             $table->date('so_date');
-            $table->string('faktur', '20');
+            $table->string('faktur', '20')->unique();
             $table->string('cashier_code', '5');
             $table->string('cashier_name', '150');
             $table->decimal('total', 12, 2);
             $table->decimal('jumlah_bayar', 12, 2);
             $table->decimal('kembali', 12, 2);
             $table->timestamps();
+
+            $table->index('so_date', 'faktur');
         });
     }
 

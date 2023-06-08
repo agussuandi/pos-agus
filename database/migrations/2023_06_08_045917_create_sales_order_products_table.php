@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->timestamps();
 
-            $table->index('sales_order_id');
+            $table->index('sales_order_id', 'product_code');
             $table->foreign('sales_order_id')->references('id')->on('sales_orders');
         });
     }
